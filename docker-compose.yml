@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      SECRET_KEY: 'a185be6be6591b454dc54a81f75485ff'
+      SQLALCHEMY_DATABASE_URI: 'sqlite:////database/users.db'
+      CLICKHOUSE_USER: 'admn'
+      CLICKHOUSE_PASSWORD: 'admin'
+      CLICKHOUSE_NODES: '["node01","node02","node03,"node04","node05","node06"]'
+      LDAP_AD_SERVER: '10.0.0.1'
+      LDAP_AD_DOMAIN: 'ORG'
+      LDAP_AD_PORT: 389
+      
+    volumes:
+      - ./db:/database
+    ports:
+      - 5000:5000
+    command: gunicorn -w 4 -b 0.0.0.0:5000 "app:create_app()"
