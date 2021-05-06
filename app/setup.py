@@ -14,7 +14,7 @@ setup(
 		"flask-wtf==0.14.2",
 		"flask-login==0.4.1",
         "flask-sqlalchemy==2.4.1",
-        "flask-cors==3.0.7",
+        "flask-cors==3.0.9",
         "flask-migrate==2.5.2",
     ],
     include_package_data=True,
